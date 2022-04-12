@@ -1,10 +1,8 @@
 <h1>Resume</h1>
 
-<!-- <a href="/resumes/new">新增履歷</a> -->
-<!-- X <a href="<%= new_resume_path %>">新增履歷</a> -->
-
-
 <%= link_to "新增履歷", new_resume_path %>
-<!-- X <%= link_to "新增履歷", "/resumes/new"%> -->
 
-rails g model Resume title content:text status
+<ul>
+  <%# <%= render partial: "resume", collection: @resumes %> 
+  <%= render  @resumes %>
+</ul>

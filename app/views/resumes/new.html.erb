@@ -1,2 +1,9 @@
 <h1>新增履歷</h1>
 
+<%# form_tag( 不會跟 model 有關聯) / form_for( model ) / 
+form_with(model: XXXX) 
+form_with  %>
+<%= render "form", resume: @resume %>
+
+
+<%= render "ad", ad_text: "我是新增頁面的廣告" %>

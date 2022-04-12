@@ -1,0 +1,27 @@
+<h1>會員註冊</h1>
+
+<%= form_with(model: @user, url: "/users", method: "post") do |form| %>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.email_field :email, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :username %>
+    <%= form.text_field :username, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_confirm %>
+    <%= form.password_field :password_confirm, autocomplete: "off" %>
+  </div>
+
+  <%= form.submit "註冊"%>
+
+<% end %>
