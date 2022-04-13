@@ -1,6 +1,18 @@
 <h1>會員註冊</h1>
 
-<%= form_with(model: @user, url: "/users", method: "post") do |form| %>
+<% if @user.errors.any? %>
+
+  <ul>
+  <% @user.errors.full_messages.each do |message| %>
+    <li>
+      <%= message %>
+    </li>
+  <% end %>
+  </ul>
+
+<% end %>
+
+<%= form_with(model: @user) do |form| %>
 
   <div class="field">
     <%= form.label :email %>
@@ -14,12 +26,12 @@
 
   <div class="field">
     <%= form.label :password %>
-    <%= form.password_field :password, autocomplete: "off" %>
+    <%= form.password_field :password, autocomplete: "off"%>
   </div>
 
   <div class="field">
-    <%= form.label :password_confirm %>
-    <%= form.password_field :password_confirm, autocomplete: "off" %>
+    <%= form.label :password_confirmation  %>
+    <%= form.password_field :password_confirmation %>
   </div>
 
   <%= form.submit "註冊"%>

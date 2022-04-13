@@ -1,7 +1,18 @@
 Rails.application.routes.draw do
   resources :resumes
 
-  get "users/sign_up", to: "users#new"
+  resource :users, only:[:create] do 
+    get :sign_up
+    get :sign_in
+  end
+
+  resources :sessions, only: [:create, :destroy]
+  
+
+  
+  
+
+  
 
   # get "/resumes", to: "resumes#index"
   # get "/resumes/new", to: "resumes#new", as:"new_resume"
