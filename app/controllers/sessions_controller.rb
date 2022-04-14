@@ -3,7 +3,8 @@ class SessionsController < ApplicationController
     #檢查密碼是否存在
     user = User.login(params[:user])
     if user 
-      session[:thankyou] = user.id
+
+      session[:thankyou] = user.id  #給他session
       
       redirect_to root_path, notice: "登入成功"
     else
