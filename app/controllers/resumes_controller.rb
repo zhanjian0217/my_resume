@@ -1,12 +1,18 @@
 class ResumesController < ApplicationController
+  before_action :find_resume, only: [:show]
 
-  before_action :find_resume, only: [:show, :edit, :update, :destroy]
+  before_action :find_my_resume, only: [:edit, :update, :destroy, :show]
+
+  before_action :authenticate_user, except: [:index, :show]
 
   def index
-    @resumes = Resume.all
-    # flash[:notice] = "123"
-    # flash[:alert] = "456"
+    flash[:notice] = "123"
+    @resumes = Resume.published
     #render file: "../views/resumes/index.html.erb" default
+  end
+
+  def my 
+    @resumes = current_user.resumes
   end
 
   def new
@@ -14,9 +20,15 @@ class ResumesController < ApplicationController
   end 
 
   def create
-    @resume = Resume.new(resume_params)
+    # @resume = Resume.new(resume_params) #先做resume指定他的user.id 
+    # @resume.user.id = current_user.id
+    # @resume.user = current_user
+
+    @resume = current_user.resumes.new(resume_params) #從使用者角度創造履歷
+
     if @resume.save
       # flash[:notice] = "新增成功"
+      # render html: params
       redirect_to resumes_path, notice: "新增成功"
     else
       render :new
@@ -43,7 +55,6 @@ class ResumesController < ApplicationController
   end
 
 
-
   private
     # Strong Parameters
   def resume_params
@@ -51,6 +62,16 @@ class ResumesController < ApplicationController
   end
 
   def find_resume
-    @resume = Resume.find(params[:id]) 
+    # @resume = Resume.find(params[:id])
+    if current_user
+      current_user.resumes
+    else
+      @resume = Resume.published.find(params[:id])   
+    end
+
+  end
+  
+  def find_my_resume
+    @resume = current_user.resumes.find(params[:id])
   end
 end
