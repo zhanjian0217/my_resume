@@ -1,8 +1,6 @@
 <%# <% resumes.each do |resume| %> 
   <li>
     <%= link_to resume.title, resume_path(resume) %>
-    |
-    <%= link_to "X", resume_path(resume), method: :delete, data: {confirm: "are u sure ?"} %>
   </li>
 
 <%# <% end %> 

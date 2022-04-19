@@ -6,7 +6,7 @@ class ResumesController < ApplicationController
   before_action :authenticate_user, except: [:index, :show]
 
   def index
-    flash[:notice] = "123"
+    # flash[:notice] = "123"
     @resumes = Resume.published
     #render file: "../views/resumes/index.html.erb" default
   end
