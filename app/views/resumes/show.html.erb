@@ -1,4 +1,6 @@
-<h1><%= @resume.title %>履歷</h1>
+<h1><%= @resume.title %> 履歷</h1>
 <%= link_to "修改", edit_resume_path(@resume) %>
 
-<%= render "ad", ad_text: "我是show頁面的廣告" %>
+<%= markdown(@resume.content) %>
+
+<%#= render "ad", ad_text: "我是show頁面的廣告" %>

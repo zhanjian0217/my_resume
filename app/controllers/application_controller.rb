@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :user_signed_in?, :current_user #給view當小幫手用 或是從viewhelper include 進來
 
+
   private
   
     def authenticate_user 

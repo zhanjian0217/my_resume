@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
+
+  get "/@:user_id", to: "users#default_resume"
+  get "/@:user_id/:id", to: "resumes#show", as: "user_resume"
+
   resources :resumes do 
     collection do 
       get :my
+    end
+
+    member do 
+      patch :pin
     end
   end
 

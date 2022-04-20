@@ -1,18 +1,25 @@
 class ResumesController < ApplicationController
   before_action :find_resume, only: [:show]
 
-  before_action :find_my_resume, only: [:edit, :update, :destroy, :show]
+  before_action :find_my_resume, only: [:edit, :update, :destroy, :pin, :show]
 
   before_action :authenticate_user, except: [:index, :show]
 
+
+  def pin 
+    current_user.resumes.update_all("pinned = false")
+    @resume.update(pinned: true)
+    redirect_to my_resumes_path, notice: "已設定預設履歷"
+  end
+
+
+
   def index
-    # flash[:notice] = "123"
     @resumes = Resume.published
-    #render file: "../views/resumes/index.html.erb" default
   end
 
   def my 
-    @resumes = current_user.resumes
+    @resumes = current_user.resumes    
   end
 
   def new
@@ -27,8 +34,6 @@ class ResumesController < ApplicationController
     @resume = current_user.resumes.new(resume_params) #從使用者角度創造履歷
 
     if @resume.save
-      # flash[:notice] = "新增成功"
-      # render html: params
       redirect_to resumes_path, notice: "新增成功"
     else
       render :new
@@ -66,12 +71,12 @@ class ResumesController < ApplicationController
     if current_user
       current_user.resumes
     else
-      @resume = Resume.published.find(params[:id])   
+      @resume = Resume.published.friendly.find(params[:id])   
     end
 
   end
   
   def find_my_resume
-    @resume = current_user.resumes.find(params[:id])
+    @resume = current_user.resumes.friendly.find(params[:id])
   end
 end

@@ -12,6 +12,11 @@ class User < ApplicationRecord
   before_create :encrypt_password
 
 
+  def default_resume
+    resumes.find_by(pinned: true)
+  end
+
+
 
   def self.login(user_data)
     account = user_data[:account]

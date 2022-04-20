@@ -2,6 +2,7 @@
   <div><%= link_to "我是履歷", root_path %></div>
   <ul id="login">
     <% if user_signed_in? %>
+      <li><%= link_to "我的履歷",my_resumes_path %></li>
       <li><%= link_to current_user.email %></li>
       <li><%= link_to "登出", sessions_path, method:"delete" %></li>
     <% else %>

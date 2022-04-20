@@ -12,12 +12,12 @@
 <%= form_with(model: resume) do |form| %>
   <div class="fields">
     <%= form.label :title, "標題"%>
-    <%= form.text_field :title, autocomplete: "off", afocus: true %>
+    <%= form.text_field :title, autocomplete: "off" %>
   </div>
 
   <div class="fields">
     <%= form.label :content, "內容"%>
-    <%= form.text_area :content %>
+    <%= form.text_area :content,data: { controller: "markdown-editor" } %>
   </div>
 
   <div class="fields">
