@@ -1,7 +1,7 @@
 class ResumesController < ApplicationController
   before_action :find_resume, only: [:show]
 
-  before_action :find_my_resume, only: [:edit, :update, :destroy, :pin, :show]
+  before_action :find_my_resume, only: [:edit, :update, :destroy, :pin]
 
   before_action :authenticate_user, except: [:index, :show]
 
