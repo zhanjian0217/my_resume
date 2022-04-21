@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Pundit::Authorization
   rescue_from ActiveRecord::RecordNotFound, with: :not_found 
 
   helper_method :user_signed_in?, :current_user #給view當小幫手用 或是從viewhelper include 進來
@@ -8,7 +9,7 @@ class ApplicationController < ActionController::Base
   
     def authenticate_user 
       if not user_signed_in?
-        redirect_to sign_in_users_path
+        redirect_to sign_in_users_path unless user_signed_in?
       end
     end
 

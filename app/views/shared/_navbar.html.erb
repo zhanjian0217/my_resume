@@ -1,8 +1,11 @@
 <nav>
-  <div><%= link_to "我是履歷", root_path %></div>
+  <div><%= link_to "履歷們", root_path %></div>
   <ul id="login">
     <% if user_signed_in? %>
-      <li><%= link_to "我的履歷",my_resumes_path %></li>
+      <li><%= link_to "新增履歷",new_resume_path %></li>
+      <% if policy(:resume).new? %>
+        <li><%= link_to "我的履歷",my_resumes_path %></li>
+      <% end %>
       <li><%= link_to current_user.email %></li>
       <li><%= link_to "登出", sessions_path, method:"delete" %></li>
     <% else %>

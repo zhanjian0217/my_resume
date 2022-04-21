@@ -1,13 +1,11 @@
 class ResumesController < ApplicationController
   before_action :find_resume, only: [:show]
-
   before_action :find_my_resume, only: [:edit, :update, :destroy, :pin]
-
   before_action :authenticate_user, except: [:index, :show]
 
 
   def pin 
-    current_user.resumes.update_all("pinned = false")
+    current_user.resumes.update_all(pinned: false)
     @resume.update(pinned: true)
     redirect_to my_resumes_path, notice: "已設定預設履歷"
   end
@@ -30,7 +28,6 @@ class ResumesController < ApplicationController
     # @resume = Resume.new(resume_params) #先做resume指定他的user.id 
     # @resume.user.id = current_user.id
     # @resume.user = current_user
-
     @resume = current_user.resumes.new(resume_params) #從使用者角度創造履歷
 
     if @resume.save
@@ -63,13 +60,13 @@ class ResumesController < ApplicationController
   private
     # Strong Parameters
   def resume_params
-    params.require(:resume).permit(:title, :content, :status)
+    params.require(:resume).permit(:title, :content, :status, :mugshot)
   end
 
   def find_resume
     # @resume = Resume.find(params[:id])
-    if current_user
-      current_user.resumes
+    if user_signed_in?
+      find_my_resume
     else
       @resume = Resume.published.friendly.find(params[:id])   
     end

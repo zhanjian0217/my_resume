@@ -1,5 +1,11 @@
-<h1><%= @resume.user.username %> 履歷</h1>
+<h1><%= @resume.title %> 履歷</h1>
 <%= link_to "修改", edit_resume_path(@resume) %>
+
+<%#= image_tag @resume.mugshot %>
+
+<%= image_tag @resume.mugshot.variant(resize_to_limit: [200, 200]) if @resume.mugshot.attached?%>
+
+<%#= link_to "點我下載zip檔", @resume.mugshot if @resume.mugshot.attached? %>
 
 <%= markdown(@resume.content) %>
 

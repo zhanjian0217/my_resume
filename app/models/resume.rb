@@ -1,6 +1,11 @@
 class Resume < ApplicationRecord
-  extend FriendlyId
+  extend FriendlyId # make a "class method"(類別方法) # include made instance method
   friendly_id :random_slug, use: :slugged
+  # -> slug
+  
+  
+  has_one_attached :mugshot 
+
 
 
   # validations
@@ -12,9 +17,10 @@ class Resume < ApplicationRecord
   scope :draft, -> { where(status: "draft") }
 
 
-
   # relationships
   belongs_to :user
+
+
 
   def self.all_status
     [

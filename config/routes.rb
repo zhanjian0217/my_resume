@@ -17,8 +17,13 @@ Rails.application.routes.draw do
     get :sign_up
     get :sign_in
   end
-
+ 
   resource :sessions, only: [:create, :destroy]
+
+  namespace :admin do 
+    resources :vendors, except:[:show]
+  end
+
 
   root "resumes#index"
 end
