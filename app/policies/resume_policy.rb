@@ -26,6 +26,8 @@ class ResumePolicy < ApplicationPolicy
   end
 
 
+
+
   
 
 
