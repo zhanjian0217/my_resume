@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: b1f567bd8456dd720aa9c4bad32d4562f4a38a27
+  branch: master
+  specs:
+    faker (2.20.0)
+      i18n (>= 1.8.11, < 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -81,6 +89,11 @@ GEM
     crass (1.0.6)
     diff-lcs (1.5.0)
     erubi (1.10.0)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     ffi (1.15.5)
     foreman (0.87.2)
     friendly_id (5.4.2)
@@ -233,7 +246,9 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
-  capybara (>= 3.26)
+  capybara (>= 3.36)
+  factory_bot_rails (~> 6.2)
+  faker!
   foreman (~> 0.87.2)
   friendly_id (~> 5.4)
   image_processing (~> 1.2)
